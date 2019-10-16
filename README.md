@@ -1,5 +1,5 @@
 # Ready to use
-la template prête à être utilisée se trouve dans ```out.html```
+la template prête à être utilisée se trouve dans ```email template.html```
 
 ## Générer une template
 CSS inliner : https://www.campaignmonitor.com/resources/tools/css-inliner/
