@@ -72,18 +72,19 @@ def parcoursBalise!(str)
     # puts str
 
     while(str =~ /<__([^_\s]+)__>/)
-        # puts str
-
-        if (str !~ /<__(#{$1})__>(.*?)<\/__#{$1}__>/)
-            abort "Balise fermante sur #{$1} manquante"
-        end
+        # puts "-->" + str
 
         balise = $1
+        
+        if (str !~ /<__(#{balise})__>(.*?)<\/__#{balise}__>/)
+            abort "Balise fermante sur #{balise} manquante"
+        end
+        
         contenu = $2
-        # puts balise
+        # puts contenu
 
         if (contenu =~ /<__([^_\s]+)__>/)
-            puts contenu
+            # puts contenu
             #contenu nesté
 
             remplacement = ""
@@ -96,9 +97,9 @@ def parcoursBalise!(str)
                 while line = file.readline
                 
                     while(line =~ /__([^_\s]+)__/)
-                        puts contenu
+                        # puts contenu
                         temp = parcoursBalise!(contenu)                        
-                        puts contenu
+                        # puts contenu
                         
                         line.gsub!(/__#{$1}__/, temp)
                     end
@@ -130,25 +131,36 @@ def getContent(file, keyword)
     puts "> #{keyword}"
     file.rewind
     res = ""
-    log = false
+    level = 0
     begin
         while line=file.readline
-            # puts line
             #one liners
             if (line =~ /<__#{keyword}__>(.*?)<\/__#{keyword}__>/)
                 return $1
             end
 
-            if (line =~ /<__#{keyword}__>\s*([^\s]*)\s*/)
-                res += $1                
-                log = true
+            if (line =~ /(<__#{keyword}__>)\s*([^\s]*)\s*/)            
+                if level > 0
+                    res += $1
+                end
+                level += 1
+                res += $2
+            elsif (level > 0 && line =~ /^\s*([^\s].+)\s*$/)
+                content = $1
+                # si on a une balise fermante, est-ce la bonne cependant ?
+                if (content =~ /\s*([^\s]*)\s*<\/__#{keyword}__>/)
+                    # on a une balise fermante, donc un niveau de moins
+                    level -= 1
+                    #est-on sur la balise fermante du départ ?
+                    if (level == 0)
+                        res += $1
+                        return res
+                    end
+                end
 
-            elsif (line =~ /\s*([^\s]*)\s*<\/__#{keyword}__>/)
-                return res + $1
-
-            elsif (log && line =~ /^\s*([^\s].+)\s*$/)
-                res += $1
-
+                # on ajoute la totalité de ce qu'on vient de lire dans le resultat
+                res += content                
+               
             end
         end
     rescue EOFError
