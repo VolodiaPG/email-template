@@ -65,7 +65,7 @@ end
 
 # Modifie l'élement passé, enleve la balise
 # retourne la valeur de la balise a mettre a la place de cette derniere
-def parcoursBalise!(str)
+def parcoursBalise!(str, level)
     # puts "str -> #{str}"
     # str.gsub!(/<__(.+)__>(.*)<\/__#{$1}__>/, getRemplacementBalise($1, $2))
 
@@ -75,6 +75,9 @@ def parcoursBalise!(str)
         # puts "-->" + str
 
         balise = $1
+
+        print level
+        puts " > " + balise
         
         if (str !~ /<__(#{balise})__>(.*?)<\/__#{balise}__>/)
             abort "Balise fermante sur #{balise} manquante"
@@ -98,7 +101,7 @@ def parcoursBalise!(str)
                 
                     while(line =~ /__([^_\s]+)__/)
                         # puts contenu
-                        temp = parcoursBalise!(contenu)                        
+                        temp = parcoursBalise!(contenu, level+1)                        
                         # puts contenu
                         
                         line.gsub!(/__#{$1}__/, temp)
@@ -128,7 +131,7 @@ def parcoursBalise!(str)
 end
 
 def getContent(file, keyword)
-    puts "> #{keyword}"
+    puts "0 > #{keyword}"
     file.rewind
     res = ""
     level = 0
@@ -168,6 +171,8 @@ def getContent(file, keyword)
     abort "Pas de balise <__#{keyword}__>[...]</__#{keyword}__> correspondant à __#{keyword}__"
 end
 
+puts "[Niveau de la balise] > [Nom de la balise]"
+
 # Boucle de lecture du fichier template
 begin
 	while line=ft.readline
@@ -178,7 +183,7 @@ begin
             temp = $1
             temp = getContent(fc, temp)
             # puts temp
-            temp = parcoursBalise!(temp)
+            temp = parcoursBalise!(temp, 0)
             
             line.gsub!(/__#{$1}__/, temp)
             # puts line
