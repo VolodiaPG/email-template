@@ -11,7 +11,7 @@ Ce script a été codé sous [Ruby](www.ruby-lang.org), son installation est req
 Pour windows, pour simplement utiliser le script il faut [télécharger])(https://rubyinstaller.org/downloads/) la version sans `devkit`. Il suffit de suivre les instructions comme pour installer n'importe quel autre programme. Dans l'éventualité où un ajout au `PATH` est recommendé, accepté. (le `PATH` est un varibale de Windows qui indique où certains porgramme se trouve)
 
 ### Génération d'un premier mail à partir d'une template
-Pour faciliter l'utilisation du script, un autre script `generator.ps1` permet de ne pas avoir à passer par une console pour taper les commandes. Il suffit de l'éxécuter.<br>
+Pour faciliter l'utilisation du script, un autre script `generator.bat` permet de ne pas avoir à passer par une console pour taper les commandes. Il suffit de l'éxécuter.<br>
 Cela signifie que le nom des fichiers utilisable ne peut être choisi et qu'une liste de fichiers doivent existés :
 - `email_template.html`: c'est le fichier de la template du mail
 - `content.html`: c'est ici que vous pouvez configuré / personnalisé le contenu de la template, une section est dédiée.
