@@ -13,6 +13,15 @@ if (nbarg!=3) then abort syntaxe ; end
 # Renommage des paramètres
 (template, contenu, sortie)=ARGV
 
+# Liste de tous les remplacements de HTML possibles
+$listReplacements = {}
+Dir["./replacements/*.html"].each{|path|
+    if (path =~ /.*\/(\w+).html$/)
+        $listReplacements[$1] = path
+    end
+}
+
+
 def openFile(path)
     if (!File.exist?(path))
         abort "\t[Erreur: Le fichier d'entrée #{path} n'existe pas]\n";
@@ -171,6 +180,23 @@ def getContent(file, keyword)
     abort "Pas de balise <__#{keyword}__>[...]</__#{keyword}__> correspondant à __#{keyword}__"
 end
 
+def replaceHTML(str)
+    # while (str ~= /(<[^\/](\w+)\s*.*>)/)
+    #     if 
+    # end
+    # puts $listReplacements
+    $listReplacements.each{|key, value|
+        if (str =~ /<#{key}>/)
+            puts value
+            file = openFile(value)
+            replacement = file.read
+            str.gsub!(/<#{key}>/, replacement)
+            file.close
+        end
+    }
+    return str
+end
+
 puts "[Niveau de la balise] > [Nom de la balise]"
 
 # Boucle de lecture du fichier template
@@ -184,10 +210,13 @@ begin
             temp = getContent(fc, temp)
             # puts temp
             temp = parcoursBalise!(temp, 0)
+
+            temp = replaceHTML(temp)
             
             line.gsub!(/__#{$1}__/, temp)
             # puts line
         end
+
         # line.scan(/__([^\s]+)__/).each {|corres|
         #     puts "#{corres}"
         #     line.gsub!(/__#{corres}__/, getContent(fc, corres))
