@@ -8,7 +8,7 @@ Le script parcours en premier un fichier `template` à la recherche de clés de 
 ### Setup
 Ce script a été codé sous [Ruby](www.ruby-lang.org), son installation est requise, il suffit d'y suivre le guide d'[installation](www.ruby-lang.org/en/downloads/).
 #### Windows
-Pour windows, pour simplement utiliser le script il faut [télécharger])(https://rubyinstaller.org/downloads/) la version sans `devkit`. Il suffit de suivre les instructions comme pour installer n'importe quel autre programme. Dans l'éventualité où un ajout au `PATH` est recommendé, accepté. (le `PATH` est un varibale de Windows qui indique où certains porgramme se trouve)
+Pour windows, pour simplement utiliser le script il faut [télécharger](https://rubyinstaller.org/downloads/) la version sans `devkit`. Il suffit de suivre les instructions comme pour installer n'importe quel autre programme. Dans l'éventualité où un ajout au `PATH` est recommendé, accepté. (le `PATH` est un varibale de Windows qui indique où certains porgramme se trouve)
 
 ### Génération d'un premier mail à partir d'une template
 Pour faciliter l'utilisation du script, un autre script `generator.bat` permet de ne pas avoir à passer par une console pour taper les commandes. Il suffit de l'éxécuter.<br>
