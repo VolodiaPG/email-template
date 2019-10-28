@@ -22,37 +22,56 @@ Le fichier de configuration se présente comme suit. Des balises encadrent le co
 Cette notation supporte le format `HTML` qui peut-être insérer entre les balises. Par exemple pour sauter un ligne il faut mettre `<br>` à l'endroit voulu.
 
 ```html
-<__HEADINGIMAGE__>URL de l'image au dessus du header</__HEADINGIMAGE__>
-<__OBJECT__>Objet du mail</__OBJECT__>
+<__HEADINGIMAGE__>
+    https://drive.google.com/uc?export=view&id=1tGduKEJeJue8JZCq1FRdio2vdaBipjA0
+</__HEADINGIMAGE__>
+<__PRIMARYCOLOR__>rgb(239, 125, 0)</__PRIMARYCOLOR__>
+<__OBJECT__>Template</__OBJECT__>
 <__SUBOBJECT__>indiquer le sous objet</__SUBOBJECT__>
 <__CONTENT__>
-    Tout se passe ici<br>
-    on peu y mettre du code <b>HTML</b> tranquillement,<br>
-    mais aussi des boutons:
+    <p>
+        Tout se passe ici<br>
+        on peut y mettre du code <b>HTML</b> tranquillement,<br>
+        créer des paragraphes : (il vaut mieux organiser tout le document en différents paragraphes)
+    </p>
+    <p>
+        Voici un paragraphe où le texte est en <i>italique</i>
+    </p>
+    <p>
+        Et un autre où je mets du texte en <b>gras</b>
+    </p>
+    <p>
+        mais aussi des boutons:
+    </p>
     <__BUTTONIMAGE__>
-        <__BUTTONLINK__>url</__BUTTONLINK__>
-        <__IMAGEURL__>imgurl</__IMAGEURL__>
-        <__BUTTONTEXT__>Toto</__BUTTONTEXT__>
+        <__LINK__>http://google.com</__LINK__>
+        <__IMAGE__>
+            https://drive.google.com/uc?export=view&id=1tGduKEJeJue8JZCq1FRdio2vdaBipjA0
+        </__IMAGE__>
+        <__TEXT__>Toto</__TEXT__>
     </__BUTTONIMAGE__>
-    Niceeeeeeee, un autre bouton :
-   <__BUTTONIMAGE__>
-        <__BUTTONLINK__>url</__BUTTONLINK__>
-        <__IMAGEURL__>imgurl</__IMAGEURL__>
-        <__BUTTONTEXT__>Toto</__BUTTONTEXT__>
+    <p>
+        Niceeeeeeee
+    </p>
+    <__BUTTONIMAGE__>
+        <__LINK__>http://google.com</__LINK__>
+        <__IMAGE__>
+            https://drive.google.com/uc?export=view&id=1tGduKEJeJue8JZCq1FRdio2vdaBipjA0
+        </__IMAGE__>
+        <__TEXT__>titi</__TEXT__>
     </__BUTTONIMAGE__>
-</__CONTENT__>
-Une liste de contributeurs
- <__CONTRIBUTORS__>
+    <__CONTRIBUTORS__>
         <__CONTENT__>
-            Volodia
+            Volodia <br> Jeanjean
         </__CONTENT__>
     </__CONTRIBUTORS__>
-<__FIRSTNAME__>Mon prénom</__FIRSTNAME__>
-<__SURNAME__>Mon nom</__SURNAME__>
-<__TEL__>mon tel</__TEL__>
-<__CONTACTEMAIL__>mon email</__CONTACTEMAIL__>
-<__STATUS__>ce que je représente, par ex. Elève ingénieur</__STATUS__>
-<__PROMO__>Ma promo, eg. 2STPI</__PROMO__>
+</__CONTENT__>
+<__FIRSTNAME__>fn</__FIRSTNAME__>
+<__SURNAME__>sn</__SURNAME__>
+<__TEL__>tel</__TEL__>
+<__CONTACTEMAIL__>email</__CONTACTEMAIL__>
+<__STATUS__>Toto</__STATUS__>
+<__PROMO__>Promo</__PROMO__>
 ```
 ### Zimbra
 Dans zimbra il faudra copier le contenu de `output.html` et dans le message, cliquer sur `code source`, coller. Des fois du texte se trouve avant le beau mail, il faudra le supprimer (DOCTYPE).
