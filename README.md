@@ -19,7 +19,8 @@ Le résultat sort dans un fichier `output.html`.
 
 ### Personnalisation / `content.html`
 Le fichier de configuration se présente comme suit. Des balises encadrent le contenu qui viendra s'insérer à la place correspondante dans le mail.<br>
-Cette notation supporte le format `HTML` qui peut-être insérer entre les balises. Par exemple pour sauter un ligne il faut mettre `<br>` à l'endroit voulu.
+Cette notation supporte le format `HTML` qui peut-être insérer entre les balises. Par exemple pour sauter un ligne il faut mettre `<br>` à l'endroit voulu.<br>
+Il est fortement conseiller d'utiliser un éditeur qui prend en charge le HTML, par exemple VSCode, notepad++, ...
 
 ```html
 <__HEADINGIMAGE__>
@@ -74,7 +75,7 @@ Cette notation supporte le format `HTML` qui peut-être insérer entre les balis
 <__PROMO__>Promo</__PROMO__>
 ```
 ### Zimbra
-Dans zimbra il faudra copier le contenu de `output.html` et dans le message, cliquer sur `code source`, coller. Des fois du texte se trouve avant le beau mail, il faudra le supprimer (DOCTYPE).
+Dans zimbra il faudra copier le contenu de `output.html` et dans le message, cliquer sur <b>`code source`</b>, coller. Des fois du texte se trouve avant le beau mail, il faudra le supprimer (eg. `DOCTYPE`).
 
 ## Générer un code minifier
 - CSS inliner : `https://www.campaignmonitor.com/resources/tools/css-inliner/` (enlever le css non-utile (tout sauf les media queries))
